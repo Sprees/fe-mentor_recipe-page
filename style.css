@@ -128,7 +128,7 @@
     }
 
     body {
-        background-color: var(--clr-stone-150);
+        background-color: var(--clr-stone-100);
         color: var(--clr-stone-600);
         font-family: 'Outfit', sans-serif;
         line-height: 1.5;
