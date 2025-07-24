@@ -1,0 +1,312 @@
+@font-face {
+    font-family: 'Young Serif';
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url('/assets/fonts/young-serif/YoungSerif-Regular.ttf')
+        format('truetype');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400 700;
+    src: url('/assets/fonts/outfit/Outfit-VariableFont_wght.ttf')
+        format('truetype');
+}
+
+@layer reset {
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    /* Prevent font size inflation */
+    html {
+        -moz-text-size-adjust: none;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    /* Remove default margin in favour of better control in authored CSS */
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    figure,
+    blockquote,
+    dl,
+    dd {
+        margin: 0;
+    }
+
+    ul,
+    ol {
+        list-style: none;
+        display: grid;
+        gap: var(--gap-100);
+        padding: 0;
+        margin: 0;
+    }
+
+    /* A elements that don't have a class get default styles */
+    a:not([class]) {
+        text-decoration: none;
+        text-decoration-skip-ink: auto;
+        color: currentColor;
+        &:hover {
+            color: var(--clr-yellow);
+        }
+    }
+
+    /* Make images easier to work with */
+    img,
+    picture {
+        max-width: 100%;
+        display: block;
+    }
+
+    /* Inherit fonts for inputs and buttons */
+    input,
+    button,
+    textarea,
+    select {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    /* Make sure textareas without a rows attribute are not tiny */
+    textarea:not([rows]) {
+        min-height: 10em;
+    }
+
+    /* Anything that has been anchored to should have extra scroll margin */
+    :target {
+        scroll-margin-block: 5ex;
+    }
+}
+
+@layer base {
+    :root {
+        --clr-rose-800: hsl(332, 51%, 32%);
+        --clr-rose-50: hsl(330, 100%, 98%);
+
+        --clr-stone-900: hsl(24, 5%, 18%);
+        --clr-stone-600: hsl(30, 10%, 34%);
+        --clr-stone-150: hsl(30, 18%, 87%);
+        --clr-stone-100: hsl(30, 54%, 90%);
+
+        --clr-brown-800: hsl(14, 45%, 36%);
+
+        --clr-white: hsl(0, 0%, 100%);
+
+        --clr-attribution: hsl(228, 45%, 44%);
+
+        --fs-100: .6875rem;
+        --fs-400: 1rem;
+        --fs-500: 1.25rem;
+        --fs-600: 1.75rem;
+        --fs-900: 2.25rem;
+
+        --gap-100: 0.5rem;
+        --gap-200: 0.75rem;
+        --gap-300: 1rem;
+        --gap-400: 1.5rem;
+        --gap-600: 2rem;
+        --gap-700: 2.5rem;
+        --gap-800: 3rem;
+        --gap-900: 8rem;
+
+        @media (min-width: 37.5em) {
+            --fs-900: 2.5rem;
+        }
+    }
+
+    body {
+        background-color: var(--clr-stone-150);
+        color: var(--clr-stone-600);
+        font-family: 'Outfit', sans-serif;
+        line-height: 1.5;
+    }
+
+    img {
+        @media (min-width: 33.5em) {
+            border-radius: 0.75rem;
+        }
+    }
+
+    h1 {
+        font-size: var(--fs-900);
+        margin-block-end: var(--gap-400);
+        line-height: 1;
+        color: var(--clr-stone-900);
+    }
+
+    h2:not(.preparation h2) {
+        color: var(--clr-brown-800);
+        font-family: 'Young Serif', sans-serif;
+        font-size: var(--fs-600);
+        line-height: 1;
+        margin-block-end: var(--gap-400);
+    }
+
+    span {
+        font-weight: 600;
+        &::after {
+            content: ' ';
+        }
+    }
+
+    ul {
+        & li {
+            display: flex;
+            align-items: center;
+            gap: var(--gap-400);
+            &::before {
+                content: '●';
+                margin-inline-start: 0.5rem;
+                font-size: 0.625rem;
+                color: var(--clr-brown-800);
+            }
+        }
+    }
+
+    ol {
+        counter-reset: item;
+        & li {
+            display: flex;
+            gap: var(--gap-400);
+            &::before {
+                counter-increment: item;
+                content: counter(item) '.';
+                margin-inline-start: 0.5rem;
+                font-weight: 700;
+                color: var(--clr-brown-800);
+            }
+        }
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        & tr:not(:last-of-type) {
+            border-bottom: 1px solid var(--clr-stone-150);
+        }
+
+        & tr:not(:first-of-type) td,
+        tr:not(:first-of-type) th {
+            padding-block-start: var(--gap-200);
+        }
+
+        & tr:not(:last-of-type) td,
+        tr:not(:last-of-type) th {
+            padding-block-end: var(--gap-200);
+        }
+
+        & td {
+            padding-inline-start: var(--gap-400);
+        }
+
+        & th {
+            color: var(--clr-brown-800);
+            text-align: left;
+            padding-inline-end: 1.25rem;
+        }
+    }
+
+    .preparation {
+        background-color: var(--clr-rose-50);
+        padding: var(--gap-400);
+        border-radius: 0.75rem;
+        margin-block: var(--gap-600);
+        & h2 {
+            color: var(--clr-rose-800);
+            font-size: var(--fs-500);
+            margin-block-end: var(--gap-300);
+        }
+
+        & ul li::before {
+            color: var(--clr-rose-800);
+        }
+    }
+
+    .break {
+        width: 100%;
+        height: 1px;
+        background-color: var(--clr-stone-150);
+        margin-block: var(--gap-600);
+    }
+
+    .nutrition > p {
+        margin-block-end: var(--gap-400);
+    }
+}
+
+@layer layout {
+    .wrapper-page {
+        max-width: max(23.4375em, 48em);
+        margin: 0 auto;
+        background-color: var(--clr-white);
+
+        @media (min-width: 33.5em) {
+            padding: var(--gap-700);
+            margin-inline: 4.75rem;
+            margin-block: 8rem;
+            border-radius: 1.5rem;
+        }
+        
+        @media (width > 57.5em) {
+            margin-inline: auto;
+        }
+    }
+
+    .wrapper-content {
+        margin-block: var(--gap-700);
+        margin-inline: var(--gap-600);
+        @media (min-width: 33.5em){
+            margin-inline: 0;
+            margin-block-end: 0;
+        }
+    }
+}
+
+@layer components {
+    .attribution {
+        position: relative;
+        bottom: 1rem;
+        left: 50%;
+        transform: translate(-50%);
+        font-size: var(--fs-100);
+        text-align: center;
+        & a {
+            color: var(--clr-attribution);
+        }
+    }
+}
+
+@layer utilities {
+    .serif-400 {
+        font-family: 'Young Serif', sans-serif;
+        line-height: 1;
+    }
+
+    .outfit-700 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+    }
+
+    .outfit-600 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 600;
+    }
+
+    .outfit-400 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 400;
+    }
+}
