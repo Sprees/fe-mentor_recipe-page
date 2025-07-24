@@ -267,25 +267,33 @@
     }
 
     .wrapper-content {
-        margin-block: var(--gap-700);
+        margin-block-start: var(--gap-700);
         margin-inline: var(--gap-600);
+        padding-block-end: var(--gap-700);
         @media (min-width: 33.5em){
             margin-inline: 0;
             margin-block-end: 0;
+            padding-block-end: 0;
         }
     }
 }
 
 @layer components {
     .attribution {
+        background-color: var(--clr-white);
         position: relative;
-        bottom: 1rem;
+        bottom: 0;
+        padding-block-end: 1rem;
         left: 50%;
         transform: translate(-50%);
         font-size: var(--fs-100);
         text-align: center;
         & a {
             color: var(--clr-attribution);
+        }
+
+        @media (min-width: 33.5em) {
+            background-color: var(--clr-stone-100);
         }
     }
 }
